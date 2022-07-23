@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             ),
             backgroundColor: primaryColor),
         debugShowCheckedModeBanner: false,
-        home: const TripWidget(),
+        home: const WelcomePageWidget(),
       );
     });
   }

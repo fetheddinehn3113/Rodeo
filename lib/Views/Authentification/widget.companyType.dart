@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rodeo/Views/Authentification/widget.register.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -25,6 +26,7 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
         child: Scaffold(
           backgroundColor: primaryColor,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             bottom: PreferredSize(
                 preferredSize: Size.fromHeight(1.h),
                 child: Text("Login",
@@ -89,7 +91,9 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
                         Expanded(
                             child: Column(
                               children: [
-                                buttonModel("Continue", () {}),
+                                buttonModel("Continue", () {
+                                  Get.to(()=>RegisterWidget());
+                                }),
                               ],
                             ))
                       ],

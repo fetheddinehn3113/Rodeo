@@ -17,11 +17,6 @@ class AddTripController extends GetxController {
   var secondTime = TimeOfDay.now();
   var favoriteTime = TimeOfDay.now();
 
-  @override
-  void onInit(){
-    super.onInit();
-    getLocation();
-  }
 
   Map<String, bool> daysSelected = {
     "Su": false,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rodeo/Data/palette.data.dart';
+import 'package:rodeo/Views/Authentification/widget.companyType.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Controllers/Authentification/controller.userType.dart';
@@ -24,6 +25,7 @@ class _UserTypeWidgetState extends State<UserTypeWidget> {
         child: Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.h),
             child: Text("Login",
@@ -88,7 +90,9 @@ class _UserTypeWidgetState extends State<UserTypeWidget> {
                 Expanded(
                     child: Column(
                   children: [
-                    buttonModel("Continue", () {}),
+                    buttonModel("Continue", () {
+                      Get.to(()=>const CompanyTypeWidget());
+                    }),
                   ],
                 ))
               ],

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rodeo/Controllers/Authentification/controller.userType.dart';
 import 'package:rodeo/Controllers/Authentification/controller.welcomePage.dart';
 import 'package:rodeo/Data/font.data.dart';
 import 'package:rodeo/Data/palette.data.dart';
 import 'package:rodeo/Views/Authentification/widget.logIn.dart';
 import 'package:rodeo/Views/Authentification/widget.register.dart';
+import 'package:rodeo/Views/Authentification/widget.userType.dart';
 import 'package:rodeo/Views/Component/component.button.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -30,7 +32,7 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               buttonModel("Create an Account", () {
-                Get.to(()=>const RegisterWidget());
+                Get.to(()=> const UserTypeWidget());
               }),
               SizedBox(
                 height: 2.h,
