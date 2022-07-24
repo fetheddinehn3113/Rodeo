@@ -31,7 +31,7 @@ class _CarWidgetState extends State<CarWidget> {
         automaticallyImplyLeading : false ,
         bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.h),
-            child: Text("Car",
+            child: Text("Car".tr,
                 style: TextStyle(
                     fontSize: 14.sp, fontWeight: medium, color: Colors.white))),
       ),
@@ -75,7 +75,7 @@ class _CarWidgetState extends State<CarWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Type of car",
+                              "Type of car".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             SizedBox(
@@ -84,7 +84,7 @@ class _CarWidgetState extends State<CarWidget> {
                             InputComponentAuthentification(
                               leadingIcon: 'Car',
                               isString: true,
-                              hintText: 'Select your type of car',
+                              hintText: 'Select your type of car'.tr,
                               textEditingController:
                                   controller.carTypeController,
                               validate: controller.validateCarType,
@@ -94,7 +94,7 @@ class _CarWidgetState extends State<CarWidget> {
                               height: 2.h,
                             ),
                             Text(
-                              "Registration number",
+                              "Registration number".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             SizedBox(
@@ -103,7 +103,7 @@ class _CarWidgetState extends State<CarWidget> {
                             InputComponentAuthentification(
                               leadingIcon: 'Registration',
                               isString: false,
-                              hintText: 'Registration number',
+                              hintText: 'Registration number'.tr,
                               textEditingController:
                                   controller.registrationNumberController,
                               validate: controller.validateRegistrationNumber,
@@ -113,7 +113,7 @@ class _CarWidgetState extends State<CarWidget> {
                               height: 2.h,
                             ),
                             Text(
-                              "Year",
+                              "Year".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             SizedBox(
@@ -122,7 +122,7 @@ class _CarWidgetState extends State<CarWidget> {
                             InputComponentAuthentification(
                               leadingIcon: 'Date',
                               isString: false,
-                              hintText: 'Year of car',
+                              hintText: 'Year of car'.tr,
                               textEditingController:
                                   controller.yearCarController,
                               validate: controller.validateYearCar,
@@ -132,7 +132,7 @@ class _CarWidgetState extends State<CarWidget> {
                               height: 2.h,
                             ),
                             Text(
-                              "Color",
+                              "Color".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             SizedBox(
@@ -163,7 +163,7 @@ class _CarWidgetState extends State<CarWidget> {
                 Expanded(
                     child: Column(
                   children: [
-                    buttonModel("Continue", () {
+                    buttonModel("Continue".tr, () {
                        Get.offAll(()=>BottomBarWidget());
                      }),
                   ],

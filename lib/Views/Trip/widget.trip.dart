@@ -11,7 +11,7 @@ import 'package:rodeo/Views/Trip/component/component.inputSwitch.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 import 'Widgets/widget.pickTime.dart';
-import 'component/component.inputReadOnly.dart';
+import 'component/component.settingsInput.dart';
 
 class TripWidget extends StatefulWidget {
   const TripWidget({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _TripWidgetState extends State<TripWidget> {
       resizeToAvoidBottomInset: false,
       backgroundColor: primaryColor,
       appBar: AppBar(
-        title: const Text("Trip a planner"),
+        title:  Text("Trip a planner".tr),
         leading: back(),
       ),
       body: Column(
@@ -46,36 +46,36 @@ class _TripWidgetState extends State<TripWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Addresses",
+                  "Addresses".tr,
                   style: TextStyle(fontSize: 11.sp, fontWeight: semiBold),
                 ),
                 SizedBox(
                   height: 1.5.h,
                 ),
                 InputComponentTripReadOnly(
-                  hintText: 'select position',
+                  hintText: 'Select position'.tr,
                   leadingIcon: 'Position',
-                  onTap: controller.selectFromMap,
+                  onTap: controller.selectFirstPositionFromMap,
                   textEditingController: controller.firstPositionController,
                 ),
                 SizedBox(
                   height: 1.h,
                 ),
                 InputComponentTripReadOnly(
-                  hintText: 'select position',
+                  hintText: 'Select position'.tr,
                   leadingIcon: 'Position',
-                  onTap: controller.selectFromMap,
-                  textEditingController: controller.firstPositionController,
+                  onTap: controller.selectSecondPositionFromMap,
+                  textEditingController: controller.secondPositionController,
                 ),
                 SizedBox(
                   height: 6.h,
                 ),
-                inputSwitch("Car", "Match me as a driver"),
+                inputSwitch("Car", "Match me as a driver".tr),
                 SizedBox(
                   height: 3.h,
                 ),
                 Text(
-                  "Pick up time",
+                  "Pick up time".tr,
                   style: TextStyle(fontSize: 11.sp, fontWeight: semiBold),
                 ),
                 SizedBox(

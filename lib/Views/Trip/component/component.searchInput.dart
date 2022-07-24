@@ -11,16 +11,20 @@ class InputComponentTrip extends StatelessWidget {
   String suffixICon;
   String hintText;
   TextEditingController textEditingController;
+  Function() onTap;
+
 
   InputComponentTrip(
       {required this.suffixICon,
       required this.leadingIcon,
       required this.textEditingController,
-      required this.hintText});
+      required this.hintText,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: onTap,
+      readOnly: true,
       cursorColor: primaryColor,
       controller: textEditingController,
       style: TextStyle(fontSize: 10.sp, fontWeight: regular),

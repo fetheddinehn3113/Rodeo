@@ -30,7 +30,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.h),
-            child: Text("Request",
+            child: Text("Request".tr,
                 style: TextStyle(
                     fontSize: 14.sp, fontWeight: medium, color: Colors.white))),
       ),
@@ -99,7 +99,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       height: 2.h,
                     ),
                     Text(
-                      "Profile image",
+                      "Profile image".tr,
                       style: TextStyle(fontSize: 10.sp),
                     )
                   ],
@@ -115,13 +115,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "First name",
+                              "First name".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             InputComponentAuthentification(
                               leadingIcon: 'Person',
                               isString: true,
-                              hintText: 'your first name',
+                              hintText: 'your first name'.tr,
                               textEditingController:
                                   controller.firstNameController,
                               validate: controller.validatePhoneNumber,
@@ -131,13 +131,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                               height: 2.h,
                             ),
                             Text(
-                              "Last name",
+                              "Last name".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             InputComponentAuthentification(
                               leadingIcon: 'Person',
                               isString: true,
-                              hintText: 'your last name',
+                              hintText: 'your last name'.tr,
                               textEditingController:
                                   controller.lastNameController,
                               validate: controller.validatePhoneNumber,
@@ -147,13 +147,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                               height: 2.h,
                             ),
                             Text(
-                              "Email",
+                              "Email".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             InputComponentAuthentification(
                               leadingIcon: 'Email',
                               isString: true,
-                              hintText: 'your email',
+                              hintText: 'your email'.tr,
                               textEditingController:
                                   controller.lastNameController,
                               validate: controller.validatePhoneNumber,
@@ -166,7 +166,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Expanded(
                     child: Column(
                   children: [
-                    buttonModel("Continue", () {
+                    buttonModel("Continue".tr, () {
                       Get.to(() => const CarWidget());
                     }),
                   ],

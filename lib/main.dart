@@ -3,23 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 import 'package:rodeo/Data/font.data.dart';
 import 'package:flutter/services.dart';
 import 'package:rodeo/Data/palette.data.dart';
-import 'package:rodeo/Views/Authentification/widget.userType.dart';
-import 'package:rodeo/Views/Trip/Widgets/widget.map.dart';
+import 'package:rodeo/Data/translation.data.dart';
+import 'package:rodeo/Views/Authentification/widget.welcomePage.dart';
+import 'package:rodeo/Views/Trip/widget.search.dart';
+
+
 import 'package:rodeo/Views/Trip/widget.trip.dart';
 import 'package:sizer/sizer.dart';
-import 'Views/Authentification/widget.car.dart';
-import 'Views/Authentification/widget.companyType.dart';
-import 'Views/Authentification/widget.logIn.dart';
-import 'Views/Authentification/widget.register.dart';
-import 'Views/Authentification/widget.welcomePage.dart';
-import 'Views/BottomBar/widget.bottomBar.dart';
-import 'Views/Chat/widget.chat.dart';
-import 'Views/Home/widget.home.dart';
-import 'Views/Profile/ReviewProfile/widget.reviewProfile.dart';
-import 'Views/guestList/widget.gestList.dart';
+
 
 /*void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -45,6 +40,8 @@ class MyApp extends StatelessWidget {
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
         title: 'Flutter Demo',
+        translations: LocalString(),
+        locale:  const Locale('en', 'EN'),
         theme: ThemeData(
             appBarTheme: AppBarTheme(
                 elevation: 0,

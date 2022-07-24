@@ -29,7 +29,7 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
             automaticallyImplyLeading: false,
             bottom: PreferredSize(
                 preferredSize: Size.fromHeight(1.h),
-                child: Text("Login",
+                child: Text("Login".tr,
                     style: TextStyle(
                         fontSize: 14.sp, fontWeight: medium, color: Colors.white))),
           ),
@@ -72,7 +72,7 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
                                             },
                                             child: typeModelWidget(
                                                 controller.selected("Company"),
-                                                "Company"),
+                                                "Company".tr),
                                           ),
                                           const Expanded(flex: 1, child: SizedBox()),
                                           InkWell(
@@ -80,7 +80,7 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
                                               controller.changeType("Individual");
                                             },
                                             child: typeModelWidget(
-                                                controller.selected("Individual"), "Individual"),
+                                                controller.selected("Individual"), "Individual".tr),
                                           ),
                                           const Expanded(flex: 2, child: SizedBox()),
                                         ],
@@ -91,7 +91,7 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
                         Expanded(
                             child: Column(
                               children: [
-                                buttonModel("Continue", () {
+                                buttonModel("Continue".tr, () {
                                   Get.to(()=>RegisterWidget());
                                 }),
                               ],

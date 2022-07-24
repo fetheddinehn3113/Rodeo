@@ -1,0 +1,53 @@
+import 'package:get/get.dart';
+
+class LocalString extends Translations {
+  @override
+  Map<String, Map<String, String>> get keys => {
+        'en_EN': {
+          "Car" :"Car",
+          "Type of car" : "Type of car",
+          'Select your type of car' : 'Select your type of car',
+          "Registration number":"Registration number",
+          "Year":"Year",
+          'Year of car':'Year of car',
+          "Color":"Color",
+          "Continue":"Continue",
+          "Login":"Login",
+          "Select your type":"Select your type",
+          "Register": "Register",
+          "Phone":"Phone",
+          'your phone number':'your phone number',
+          "Password":"Password",
+          'your password':'your password',
+          "Request":"Request",
+          "Profile image": "Profile image",
+          "First name":"First name",
+          'your first name': 'your first name',
+          "Last name":"Last name",
+          'your last name':'your last name',
+          "Email": "Email",
+          'your email':'your email',
+          "Welcome back":"Welcome back",
+          "Create an Account":"Create an Account",
+          "Already have an account ? ":"Already have an account ? ",
+          "Sign In":"Sign In",
+          "Guest list":"Guest list",
+          "Dashboard":"Dashboard",
+          "Settings":"Settings",
+          "Account": "Account",
+          "User profile":"User profile",
+          "Match me as a driver":"Match me as a driver",
+          "Pick up time":"Pick up time",
+          'Select position':'Select position',
+          "Addresses":"Addresses",
+          "Trip a planner":"Trip a planner",
+          "Select your marker":"Select your marker",
+          'Search for place':'Search for place',
+          "User":"User",
+          "Driver":"Driver",
+          "type a place":"type a place",
+          "Company": "Company",
+          "Individual":"Individual"
+        },
+      };
+}

@@ -3,12 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rodeo/Data/const.data.dart';
-import 'package:rodeo/Views/Trip/Widgets/widget.map.dart';
+import 'package:rodeo/Views/Trip/widget.search.dart';
+import 'package:rodeo/Views/Trip/widget.map.dart';
 import 'package:location/location.dart';
+import 'package:geocoding/geocoding.dart' as geo;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice/places.dart' as webService;
+import 'package:google_api_headers/google_api_headers.dart';
+import 'package:sizer/sizer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../Data/palette.data.dart';
 
 class AddTripController extends GetxController {
-  TextEditingController firstPositionController = TextEditingController();
-  TextEditingController secondPositionController = TextEditingController();
   TextEditingController searchController = TextEditingController();
   var switchDriverBool = false.obs;
   int dateSelected = 0;
@@ -17,15 +27,14 @@ class AddTripController extends GetxController {
   var secondTime = TimeOfDay.now();
   var favoriteTime = TimeOfDay.now();
 
-
   Map<String, bool> daysSelected = {
-    "Su": false,
+    "Sa": false,
     "Mo": false,
     "Tu": false,
     "We": false,
     "Th": false,
     "Fr": false,
-    "Sa": false
+    "Su": false
   };
 
   switchDriver(bool value) {
@@ -44,7 +53,7 @@ class AddTripController extends GetxController {
     if (index == 0) {
       var today = DateTime.now();
       daysSelected.forEach((day, value) {
-        daysSelected[day] = weekDays[today.weekday] == day;
+        daysSelected[day] = weekDays[today.weekday - 1] == day;
       });
     }
     update();
@@ -117,22 +126,42 @@ class AddTripController extends GetxController {
     return firstTimeFormat() + "-" + secondTimeFormat();
   }
 
+  selectFirstPositionFromMap() {
+    positionWorkingOnIt = "first";
+    Get.to(() => const MapWidget());
+  }
 
+  selectSecondPositionFromMap() {
+    positionWorkingOnIt = "second";
+    Get.to(() => const MapWidget());
+  }
 
-  ///////// Map
+  ///////// ////////////////////////// Map
+  TextEditingController firstPositionController = TextEditingController();
+  late LatLng firstPosition;
+
+  late LatLng secondPosition;
+
+  TextEditingController secondPositionController = TextEditingController();
+  late GoogleMapController googleMapController;
+
   var requesting = false.obs;
+  String positionWorkingOnIt = "first";
+  final Set<Marker> markers = {};
+  Location location = Location();
+  LatLng localisationCamera = const LatLng(-1.7929665, -78.1368875);
 
-  switchBool(){
+  switchBool() {
     requesting.value = !requesting.value;
   }
 
-  selectFromMap() {
-    Get.to(() => const MapWidget());
+  toSearch() {
+    Get.to(() => SearchMapWidget());
   }
-  Location location = Location();
-  late LatLng initialLocalisation ;
 
-  getLocation() async {
+  //////// get localisation
+  getLocalisation() async {
+    bool failed = false;
     switchBool();
     late bool _serviceEnabled;
     late PermissionStatus _permissionGranted;
@@ -142,7 +171,7 @@ class AddTripController extends GetxController {
     if (!_serviceEnabled) {
       _serviceEnabled = await location.requestService();
       if (!_serviceEnabled) {
-        return;
+        failed = true;
       }
     }
 
@@ -150,13 +179,94 @@ class AddTripController extends GetxController {
     if (_permissionGranted == PermissionStatus.denied) {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
-        return;
+        failed = true;
       }
     }
 
-    _locationData = await location.getLocation();
-    initialLocalisation = LatLng(_locationData.latitude ?? 0, _locationData.longitude ??0);
+    if (!failed) {
+      if (firstPositionController.text.isNotEmpty &&
+          positionWorkingOnIt == "first") {
+        localisationCamera = firstPosition;
+      } else if (secondPositionController.text.isNotEmpty &&
+          positionWorkingOnIt == "second") {
+        localisationCamera = secondPosition;
+      } else {
+        _locationData = await location.getLocation();
+        localisationCamera =
+            LatLng(_locationData.latitude ?? 0, _locationData.longitude ?? 0);
+      }
+    }
 
+    markers.add(
+      Marker(
+          markerId: const MarkerId('1'),
+          position:
+              LatLng(localisationCamera.latitude, localisationCamera.longitude),
+          onTap: () {}),
+    );
+    getDetailAddress();
     switchBool();
+  }
+
+  //// when map is ready to use
+  onMapCreated(mapController) {
+    googleMapController = mapController;
+  }
+
+  //// when the camera move we update the marker position
+  onCameraMove(position) {
+    localisationCamera =
+        LatLng(position.target.latitude, position.target.longitude);
+    markers.clear();
+    markers.add(Marker(
+        zIndex: 10,
+        rotation: 10,
+        draggable: true,
+        markerId: const MarkerId('1'),
+        position: LatLng(position.target.latitude, position.target.longitude),
+        onTap: () {}));
+    update(["markers"]);
+  }
+
+  /////// get Detail of position ( country ....)
+  getDetailAddress() async {
+    var addresses = await geo.placemarkFromCoordinates(
+        localisationCamera.latitude, localisationCamera.longitude);
+    var address = addresses.first;
+    searchController.text = address.country! +
+        ", " +
+        address.subAdministrativeArea! +
+        "," +
+        address.street!;
+  }
+
+  /////// go back to trip setttings
+  backToSetting() {
+    markers.clear();
+    Get.back();
+    if (positionWorkingOnIt == "first") {
+      firstPositionController.text = searchController.text;
+      firstPosition = localisationCamera;
+    } else {
+      secondPositionController.text = searchController.text;
+      secondPosition = firstPosition = localisationCamera;
+    }
+  }
+
+  ////////Search
+
+  Future<void> displayPrediction(webService.Prediction p) async {
+    webService.GoogleMapsPlaces places = webService.GoogleMapsPlaces(
+        apiKey: apiKey,
+        apiHeaders: await const GoogleApiHeaders().getHeaders());
+
+    webService.PlacesDetailsResponse detail =
+        await places.getDetailsByPlaceId(p.placeId!);
+    Get.back();
+    final lat = detail.result.geometry!.location.lat;
+    final lng = detail.result.geometry!.location.lng;
+
+    googleMapController
+        .animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lng), 14.0));
   }
 }

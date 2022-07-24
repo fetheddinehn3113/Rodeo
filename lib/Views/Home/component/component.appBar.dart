@@ -4,7 +4,7 @@ import 'package:rodeo/Views/Trip/widget.trip.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 AppBar appBarHome() => AppBar(
-  title: const Text("Dashboard"),
+  title:  Text("Dashboard".tr),
   actions: [
     InkWell(onTap: (){
       Get.to(()=>const TripWidget());

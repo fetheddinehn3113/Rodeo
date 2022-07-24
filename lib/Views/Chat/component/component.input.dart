@@ -18,7 +18,7 @@ Widget input(){
         EdgeInsets.symmetric(horizontal: 7.sp),
         child: Row(
           children: [
-            Container(
+            /* Container(
               padding: EdgeInsets.all(14.sp),
               height: 40.sp,
               width: 40.sp,
@@ -27,7 +27,7 @@ Widget input(){
                   color: Color(0xff4675C0)),
               child: SvgPicture.asset(
                   "assets/icons/Plus.svg"),
-            ),
+            ),*/
             SizedBox(width: 2.w),
             Expanded(
                 child: TextField(

@@ -31,7 +31,7 @@ class _LogInWidgetState extends State<LogInWidget> {
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.h),
-            child: Text("Login",
+            child: Text("Login".tr,
                 style: TextStyle(
                     fontSize: 14.sp, fontWeight: medium, color: Colors.white))),
       ),
@@ -51,7 +51,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                     child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(
-                          "Register",
+                          "Register".tr,
                           style:
                               TextStyle(fontSize: 14.sp, fontWeight: semiBold),
                         ))),
@@ -66,13 +66,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Phone",
+                              "Phone".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             InputComponentAuthentification(
                               leadingIcon: 'Phone',
                               isString: false,
-                              hintText: 'your phone number',
+                              hintText: 'your phone number'.tr,
                               textEditingController:
                                   controller.phoneNumberController,
                               validate: controller.validatePhoneNumber,
@@ -82,13 +82,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                               height: 2.h,
                             ),
                             Text(
-                              "Password",
+                              "Password".tr,
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             InputComponentAuthentification(
                               leadingIcon: 'Password',
                               isString: true,
-                              hintText: 'your password',
+                              hintText: 'your password'.tr,
                               textEditingController:
                                   controller.passwordController,
                               validate: controller.validatePhoneNumber,
@@ -101,7 +101,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                 Expanded(
                     child: Column(
                   children: [
-                    buttonModel("Continue", () {
+                    buttonModel("Continue".tr, () {
                       Get.offAll(() => BottomBarWidget());
                     }),
                   ],

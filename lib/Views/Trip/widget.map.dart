@@ -4,7 +4,7 @@ import 'package:rodeo/Controllers/Trip/controller.addTrip.dart';
 import 'package:rodeo/Data/palette.data.dart';
 import 'package:rodeo/Views/Component/component.button.dart';
 import 'package:rodeo/Views/Component/component.decorationContainer.dart';
-import 'package:rodeo/Views/Trip/component/component.input.dart';
+import 'package:rodeo/Views/Trip/component/component.searchInput.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +22,7 @@ class _MapWidgetState extends State<MapWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller.getLocation();
+    controller.getLocalisation();
   }
 
   @override
@@ -60,11 +60,24 @@ class _MapWidgetState extends State<MapWidget> {
                                   borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(16.sp),
                                       topLeft: Radius.circular(16.sp)),
-                                  child: GoogleMap(
-                                    initialCameraPosition: CameraPosition(
-                                      target: controller.initialLocalisation,
-                                      zoom: 17
-                                    ),
+                                  child: GetBuilder<AddTripController>(
+                                    id: "markers",
+                                    init: controller,
+                                    builder: (context) {
+                                      return GoogleMap(
+                                        onMapCreated: controller.onMapCreated,
+                                        onCameraMove: controller.onCameraMove,
+                                        myLocationEnabled: true,
+                                        myLocationButtonEnabled: true,
+                                        markers: Set<Marker>.of(controller.markers),
+                                        zoomControlsEnabled: true,
+                                        onCameraIdle:controller.getDetailAddress,
+                                        initialCameraPosition: CameraPosition(
+                                          target: controller.localisationCamera,
+                                          zoom: 9
+                                        ),
+                                      );
+                                    }
                                   ),
                                 ),
                         ),
@@ -84,15 +97,16 @@ class _MapWidgetState extends State<MapWidget> {
                               InputComponentTrip(
                                 textEditingController:
                                     controller.searchController,
-                                hintText: 'Search for place',
+                                hintText: 'Search for place'.tr,
                                 leadingIcon: 'Search',
                                 suffixICon: 'Target',
+                                onTap: controller.toSearch,
                               ),
                               SizedBox(
                                 height: 3.h,
                               ),
                               Center(
-                                child: buttonModel("Continue", () {}),
+                                child: buttonModel("Continue".tr, controller.backToSetting),
                               ),
                             ],
                           ),

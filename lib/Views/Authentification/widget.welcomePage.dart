@@ -31,7 +31,7 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              buttonModel("Create an Account", () {
+              buttonModel("Create an Account".tr, () {
                 Get.to(()=> const UserTypeWidget());
               }),
               SizedBox(
@@ -41,7 +41,7 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Already have an account ? ",
+                    "Already have an account ? ".tr,
                     style: TextStyle(fontSize: 10.sp),
                   ),
                   InkWell(
@@ -49,7 +49,7 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
                       Get.to(()=>const LogInWidget());
                     },
                     child: Text(
-                      "Sign In",
+                      "Sign In".tr,
                       style: TextStyle(
                           fontSize: 10.sp,
                           color: secondaryColor,

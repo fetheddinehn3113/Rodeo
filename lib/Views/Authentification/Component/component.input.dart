@@ -36,7 +36,7 @@ class InputComponentAuthentification extends StatelessWidget {
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 5.w),
             child: SvgPicture.asset("assets/icons/$leadingIcon.svg",color: primaryColor,
-            height:10.sp ,width:10.sp ,),
+            height:12.sp ,width:12.sp ,),
           ),
 
         ]),

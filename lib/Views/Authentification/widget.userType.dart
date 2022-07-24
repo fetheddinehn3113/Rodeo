@@ -28,7 +28,7 @@ class _UserTypeWidgetState extends State<UserTypeWidget> {
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.h),
-            child: Text("Login",
+            child: Text("Login".tr,
                 style: TextStyle(
                     fontSize: 14.sp, fontWeight: medium, color: Colors.white))),
       ),
@@ -48,7 +48,7 @@ class _UserTypeWidgetState extends State<UserTypeWidget> {
                     child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(
-                          "Welcome back",
+                          "Welcome back".tr,
                           style:
                               TextStyle(fontSize: 14.sp, fontWeight: semiBold),
                         ))),
@@ -71,7 +71,7 @@ class _UserTypeWidgetState extends State<UserTypeWidget> {
                                     },
                                     child: typeModelWidget(
                                         controller.selected("Driver"),
-                                        "Driver"),
+                                        "Driver".tr),
                                   ),
                                   const Expanded(flex: 1, child: SizedBox()),
                                   InkWell(
@@ -79,7 +79,7 @@ class _UserTypeWidgetState extends State<UserTypeWidget> {
                                       controller.changeType("User");
                                     },
                                     child: typeModelWidget(
-                                        controller.selected("User"), "User"),
+                                        controller.selected("User"), "User".tr),
                                   ),
                                   const Expanded(flex: 2, child: SizedBox()),
                                 ],
@@ -90,7 +90,7 @@ class _UserTypeWidgetState extends State<UserTypeWidget> {
                 Expanded(
                     child: Column(
                   children: [
-                    buttonModel("Continue", () {
+                    buttonModel("Continue".tr, () {
                       Get.to(()=>const CompanyTypeWidget());
                     }),
                   ],

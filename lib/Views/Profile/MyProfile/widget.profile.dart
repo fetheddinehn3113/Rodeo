@@ -5,7 +5,7 @@ import 'package:rodeo/Data/palette.data.dart';
 import 'package:rodeo/Views/Component/component.decorationContainer.dart';
 import 'package:rodeo/Views/Profile/MyProfile/component/component.itemModel.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:get/get.dart';
 import '../../Component/component.circlePic.dart';
 
 
@@ -55,7 +55,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     height: 5.h,
                   ),
                   Text(
-                    "Account",
+                    "Account".tr,
                     style: TextStyle(fontSize: 12.sp, fontWeight: semiBold),
                   ),
                   itemModel("Fetheddine Hannai", "Personal informations"),
@@ -63,7 +63,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     height: 2.h,
                   ),
                   Text(
-                    "Settings",
+                    "Settings".tr,
                     style: TextStyle(fontSize: 12.sp, fontWeight: semiBold),
                   ),
                   itemModel("Langage", ""),
